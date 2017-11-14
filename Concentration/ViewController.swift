@@ -8,15 +8,21 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-  @IBAction func touchCard(_ sender: UIButton) {
-    flipCard(withEmoji: " 👻", on: sender)
+class ViewController: UIViewController
+{
+  var flipCount = 0{
+    didSet{ // property observer
+      flipCountLabel.text = "Flips: \(flipCount)"
+    }
   }
   
-  @IBAction func touchSecondCard(_ sender: UIButton) {
-    flipCard(withEmoji: "🤡", on: sender)
+  @IBOutlet weak var flipCountLabel: UILabel! //It doesn't have to be initialized
+  @IBAction func touchCard(_ sender: UIButton){
+    flipCount += 1
+
   }
+  
+  
   func flipCard(withEmoji emoji: String, on button: UIButton){
     print("flipCard(withEmoji: \(emoji))")
     if button.currentTitle == emoji{
