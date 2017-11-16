@@ -16,10 +16,20 @@ class ViewController: UIViewController
     }
   }
   
+  var emojiChoices = ["👻","🤡","👻","🤡"]
+  
   @IBOutlet weak var flipCountLabel: UILabel! //It doesn't have to be initialized
+  
+  @IBOutlet var cardButtons: [UIButton]!
+  
   @IBAction func touchCard(_ sender: UIButton){
     flipCount += 1
-
+    if let cardNumber = cardButtons.index(of: sender){
+      flipCard(withEmoji: emojiChoices[cardNumber], on: sender)
+      print("cardNumber = \(cardNumber)")
+    } else {
+      print("Chosen card is not in cardButtons")
+    }
   }
   
   
